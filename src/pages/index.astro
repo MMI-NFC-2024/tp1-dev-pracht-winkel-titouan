@@ -4,42 +4,64 @@ import PlotFigure from "../components/PlotFigure.astro";
 import Layout from "../layouts/Layout.astro";
 import penguins from "../assets/penguins.json";
 import olympians from "../assets/olympians.json";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<PlotFigure
-		options={{
-			marks: [
-				Plot.dot(penguins, {
-					x: "culmen_length_mm",
-					y: "culmen_depth_mm",
-					stroke: "species",
-				}),
-			],
-		}}
-	/>
-	<PlotFigure
-		options={{
-			marks: [
-				Plot.dot(penguins, {
-					x: "culmen_length_mm",
-					y: "culmen_depth_mm",
-					stroke: "island",
-				}),
-			],
-		}}
-	/>
+	<section class="space-y-12 px-6 py-10">
+		<h1 class="text-3xl font-bold text-center">
+			Visualisations avec Observable Plot
+		</h1>
 
-	<PlotFigure
-		options={{
-			marks: [
-				Plot.dot(olympians, {
-					x: "nationality",
-					y: "sport",
-				}),
-			],
-		}}
-	/>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+			<div class="p-6 rounded-2xl shadow">
+				<h2 class="text-xl font-semibold mb-4">
+					Manchots : Longueur vs Profondeur du bec (par espèce)
+				</h2>
+				<PlotFigure
+					options={{
+						marks: [
+							Plot.dot(penguins, {
+								x: "culmen_length_mm",
+								y: "culmen_depth_mm",
+								stroke: "species",
+							}),
+						],
+					}}
+				/>
+			</div>
+
+			<div class="p-6 rounded-2xl shadow">
+				<h2 class="text-xl font-semibold mb-4">
+					Manchots : Longueur vs Profondeur du bec (par île)
+				</h2>
+				<PlotFigure
+					options={{
+						marks: [
+							Plot.dot(penguins, {
+								x: "culmen_length_mm",
+								y: "culmen_depth_mm",
+								stroke: "island",
+							}),
+						],
+					}}
+				/>
+			</div>
+
+			<div class="p-6 rounded-2xl shadow md:col-span-2">
+				<h2 class="text-xl font-semibold mb-4">
+					Olympiens : Répartition Nationalité vs Taille
+				</h2>
+				<PlotFigure
+					options={{
+						marks: [
+							Plot.dot(olympians, {
+								x: "height",
+								y: "nationality",
+							}),
+						],
+					}}
+				/>
+			</div>
+		</div>
+	</section>
 </Layout>
